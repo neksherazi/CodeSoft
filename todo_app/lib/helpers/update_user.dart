@@ -48,22 +48,28 @@ class _UpdateDataState extends State<UpdateData> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text("Update Task"),
+      actionsAlignment: MainAxisAlignment.spaceEvenly,
+      title: const Text(
+        "Update Task",
+        textAlign: TextAlign.center,
+      ),
       content: SizedBox(
         width: 200,
-        height: 207,
+        height: 210,
         child: Column(
           children: [
             CustomTextField(
               controller: titleController,
               maxLines: 1,
-              labelText: "Update Title",
+              labelText: "Update title",
+              hintText: "Enter title Text",
             ),
-            const SizedBox(height: 6),
+            const SizedBox(height: 10),
             CustomTextField(
               controller: descriptionController,
               maxLines: 4,
-              labelText: "Update Descrption",
+              labelText: "Update descrption",
+              hintText: "Enter decription text",
             ),
           ],
         ),

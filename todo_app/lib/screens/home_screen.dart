@@ -17,7 +17,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late String title, description;
-  late bool completed;
   List<Map<String, dynamic>> taskList = [];
 
   @override
@@ -117,11 +116,9 @@ class _HomeScreenState extends State<HomeScreen> {
           CustomTitleText(
             width: screenWidth,
             height: 60,
-            title: "Todo App",
+            title: "ToDo App with SQFlite",
           ),
-          const SizedBox(
-            height: 20,
-          ),
+          const SizedBox(height: 10),
           Container(
             width: screenWidth,
             height: screenHeight * 0.74,
@@ -139,42 +136,53 @@ class _HomeScreenState extends State<HomeScreen> {
             child: ListView.builder(
               itemCount: taskList.length,
               itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(
-                    taskList[index]['title'],
-                  ),
-                  subtitle: Text(
-                    taskList[index]['description'],
-                  ),
-                  trailing: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      IconButton(
-                          onPressed: () {
-                            showDialog(
-                                context: context,
-                                builder: (context) => UpdateData(
-                                      userId: taskList[index]['id'],
-                                    )).then((result) {
-                              if (result == true) {
-                                _fetchData();
-                              }
-                            });
-                          },
-                          icon: const Icon(
-                            Icons.edit,
-                            color: Colors.green,
-                          )),
-                      IconButton(
-                        onPressed: () {
-                          _delete(taskList[index]['id']);
-                        },
-                        icon: const Icon(
-                          Icons.delete,
-                          color: Colors.red,
-                        ),
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.cyan,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: ListTile(
+                      title: Text(
+                        taskList[index]['title'],
+                        style: const TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
                       ),
-                    ],
+                      subtitle: Text(
+                        taskList[index]['description'],
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          IconButton(
+                              onPressed: () {
+                                showDialog(
+                                    context: context,
+                                    builder: (context) => UpdateData(
+                                          userId: taskList[index]['id'],
+                                        )).then((result) {
+                                  if (result == true) {
+                                    _fetchData();
+                                  }
+                                });
+                              },
+                              icon: const Icon(
+                                Icons.edit,
+                                color: Colors.lime,
+                              )),
+                          IconButton(
+                            onPressed: () {
+                              _delete(taskList[index]['id']);
+                            },
+                            icon: const Icon(
+                              Icons.delete,
+                              color: Colors.red,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 );
               },
@@ -191,22 +199,28 @@ class _HomeScreenState extends State<HomeScreen> {
     BuildContext context,
   ) {
     return AlertDialog(
-      title: const Text("Add Task"),
+      actionsAlignment: MainAxisAlignment.spaceEvenly,
+      title: const Text(
+        "Add Task",
+        textAlign: TextAlign.center,
+      ),
       content: SizedBox(
         width: 200,
-        height: 207,
+        height: 210,
         child: Column(
           children: [
             CustomTextField(
               controller: titleController,
               maxLines: 1,
-              labelText: "Add Title",
+              labelText: "Title",
+              hintText: "Enter title text",
             ),
-            const SizedBox(height: 6),
+            const SizedBox(height: 10),
             CustomTextField(
               controller: descriptionController,
               maxLines: 4,
-              labelText: "Add Descrption here",
+              labelText: "Descrption",
+              hintText: "Enter description text",
             ),
           ],
         ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController? controller;
+  final String? hintText;
   final String labelText;
   final int maxLines;
   final Function? onChanged;
@@ -10,6 +11,7 @@ class CustomTextField extends StatelessWidget {
       this.controller,
       required this.maxLines,
       required this.labelText,
+      this.hintText,
       this.onChanged});
 
   @override
@@ -19,6 +21,7 @@ class CustomTextField extends StatelessWidget {
       controller: controller,
       decoration: InputDecoration(
         labelText: labelText,
+        hintText: hintText,
         border: const OutlineInputBorder(),
       ),
     );
