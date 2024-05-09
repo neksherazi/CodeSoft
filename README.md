@@ -1,1 +1,1 @@
-# This repository is all about the tasts that I performed at CodSoft
+# This repository is all about the tasks that I performed at CodSoft
