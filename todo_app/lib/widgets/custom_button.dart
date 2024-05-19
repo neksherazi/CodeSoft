@@ -15,16 +15,16 @@ class CustomButton extends StatelessWidget {
     return TextButton(
       onPressed: onPressed,
       style: ButtonStyle(
-        foregroundColor: const MaterialStatePropertyAll(Colors.white),
-        fixedSize: const MaterialStatePropertyAll(Size(92, 20)),
-        shape: const MaterialStatePropertyAll(
+        foregroundColor: const WidgetStatePropertyAll(Colors.white),
+        fixedSize: const WidgetStatePropertyAll(Size(92, 20)),
+        shape: const WidgetStatePropertyAll(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(8),
             ),
           ),
         ),
-        backgroundColor: MaterialStatePropertyAll(myColor),
+        backgroundColor: WidgetStatePropertyAll(myColor),
       ),
       child: Text(name),
     );
